@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MamaRoots — Culturally Nourished Motherhood</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- Floating Emote Pop-Up -->
+    <div id="emoteToast" class="emote-toast hidden" role="status" aria-live="polite">
+      <span id="emoteIcon" class="emote-icon">💗</span>
+      <span id="emoteText" class="emote-text">Nourished!</span>
+    </div>
+
+    <!-- Top App Header -->
+    <header class="app-header">
+      <div class="brand-wrap">
+        <div class="brand-badge brand-logo-box" aria-hidden="true">
+          <img src="logo.jpg" alt="" class="brand-logo-img" />
+        </div>
+        <div>
+          <h1 class="brand-title">MamaRoots</h1>
+          <p class="brand-tagline">Culturally Nourished Motherhood</p>
+        </div>
+      </div>
+      <span id="headerLifestylePill" class="lifestyle-pill">Asian Lifestyle</span>
+    </header>
+
+    <!-- Main Scrollable Content Area -->
+    <main id="mainContent" class="main-content">
+      <!-- TAB 1: DISCOVER -->
+      <section id="tab-discover" class="tab-view" aria-label="Discover Feed">
+        <div class="card compose-card">
+          <h2>💬 Share With Mamas Worldwide</h2>
+          <label for="postInput" class="sr-only">Write a post</label>
+          <textarea id="postInput" rows="2" placeholder="Share a craving, pantang tip, or today's pregnancy moment..."></textarea>
+          <div class="compose-actions">
+            <select id="postRegionSelect" aria-label="Select region tag">
+              <option value="Malaysia / Asian">Malaysia / Asian</option>
+              <option value="Western / Global">Western / Global</option>
+              <option value="Blended Roots">Blended Roots</option>
+            </select>
+            <button id="publishPostBtn" class="btn-primary" type="button">✨ Post</button>
+          </div>
+        </div>
+
+        <div class="filter-row" role="group" aria-label="Filter community posts">
+          <button class="filter-chip active" data-filter="All" type="button">All</button>
+          <button class="filter-chip" data-filter="Malaysia / Asian" type="button">Asian</button>
+          <button class="filter-chip" data-filter="Western / Global" type="button">Western</button>
+          <button class="filter-chip" data-filter="Blended Roots" type="button">Blended</button>
+        </div>
+
+        <div id="feedList" class="feed-list"></div>
+      </section>
+
+      <!-- TAB 2: TRACKER (MAIN DEFAULT TAB) -->
+      <section id="tab-tracker" class="tab-view active" aria-label="Pregnancy Tracker">
+        <!-- Baby Growth Visual & Week Stepper -->
+        <div class="card baby-card">
+          <div class="baby-top-row">
+            <div>
+              <p class="eyebrow">BABY GROWTH & AGE</p>
+              <h2 id="babyAgeTitle">Week 20 • 140 Days Along</h2>
+            </div>
+            <span id="trimesterBadge" class="badge-soft">2nd Trimester</span>
+          </div>
+
+          <div class="baby-showcase">
+            <div id="babyIllustrationBox" class="baby-visual-box" aria-hidden="true"></div>
+            <div class="baby-details">
+              <p id="babySizePill" class="size-pill">🍌 Size of a banana</p>
+              <p id="babyMilestoneText" class="muted-text small-copy">
+                Baby is starting to hear sounds and build steady daily sleep/wake rhythms.
+              </p>
+              <div class="week-stepper" role="group" aria-label="Adjust pregnancy week">
+                <button id="prevWeekBtn" class="stepper-btn" type="button" aria-label="Previous week">−</button>
+                <span id="stepperWeekLabel" class="stepper-label">Week 20</span>
+                <button id="nextWeekBtn" class="stepper-btn" type="button" aria-label="Next week">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden Cultural Guide Trigger -->
+          <button id="openGuideBtn" class="btn-guide-trigger" type="button">
+            <span>🌿 Cultural Guide & Pantang Larang</span>
+            <span class="trigger-sub">Tap to open ▸</span>
+          </button>
+        </div>
+
+        <!-- Daily Mood & Vibe Check-In -->
+        <div class="card mood-card">
+          <div class="card-header-row">
+            <h3>🌸 How Are You Feeling Today?</h3>
+            <span id="activeMoodBadge" class="nutrient-tag">Cozy</span>
+          </div>
+          <div class="mood-row" role="group" aria-label="Daily mood check-in">
+            <button class="mood-btn" data-mood="Glowy" data-emote="✨" type="button"><span>✨</span>Glowy</button>
+            <button class="mood-btn active" data-mood="Cozy" data-emote="🥰" type="button"><span>🥰</span>Cozy</button>
+            <button class="mood-btn" data-mood="Tired" data-emote="😴" type="button"><span>😴</span>Tired</button>
+            <button class="mood-btn" data-mood="Queasy" data-emote="🍋" type="button"><span>🍋</span>Queasy</button>
+          </div>
+        </div>
+
+        <!-- Daily Nutrient Summary -->
+        <div class="card">
+          <div class="card-header-row">
+            <h3>🥗 Today's Nourishment</h3>
+            <div class="header-actions-inline">
+              <span id="calorieSummary" class="nutrient-tag">0 / 2,200 kcal</span>
+              <button id="resetMealsBtn" class="btn-ghost-sm" type="button" title="Reset today's logged meals">Reset</button>
+            </div>
+          </div>
+          <div class="progress-track">
+            <div id="calorieBar" class="progress-fill" style="width: 0%;"></div>
+          </div>
+          <div class="macro-grid">
+            <div class="macro-box">
+              <span class="macro-label">Protein</span>
+              <strong id="proteinVal">0g / 75g</strong>
+            </div>
+            <div class="macro-box">
+              <span class="macro-label">Folate</span>
+              <strong id="folateVal">0 / 600mcg</strong>
+            </div>
+            <div class="macro-box">
+              <span class="macro-label">Iron</span>
+              <strong id="ironVal">0 / 27mg</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo or Text Meal Logger + Quick Chips -->
+        <div class="card">
+          <h3>🍽️ Log Meal (Photo or Text)</h3>
+          <p class="muted-text small-copy">
+            Tap a quick chip, upload a meal photo, or type what you ate to check nutrients & profile allergies.
+          </p>
+
+          <div class="quick-chips" aria-label="Quick meal suggestions">
+            <button class="quick-chip" data-meal="chicken breast, brown rice, spinach soup" type="button">+ Chicken & Greens</button>
+            <button class="quick-chip" data-meal="spinach soup, egg" type="button">+ Bayam & Egg</button>
+            <button class="quick-chip" data-meal="salmon, avocado, berries" type="button">+ Salmon & Berries</button>
+          </div>
+
+          <div class="photo-upload-row">
+            <label for="mealPhotoInput" class="file-label">📷 Upload Food Photo</label>
+            <input id="mealPhotoInput" type="file" accept="image/*" hidden />
+            <span id="photoFileName" class="file-name">No photo selected</span>
+          </div>
+
+          <div id="photoPreviewWrap" class="photo-preview-wrap hidden">
+            <img id="photoPreviewImg" alt="Uploaded meal preview" />
+          </div>
+
+          <div class="meal-input-row">
+            <label for="mealTextInput" class="sr-only">Meal description</label>
+            <input
+              id="mealTextInput"
+              type="text"
+              placeholder="e.g., chicken breast, brown rice, spinach soup..."
+            />
+            <button id="logMealBtn" class="btn-primary" type="button">Analyze</button>
+          </div>
+
+          <div id="allergyAlertBox" class="alert-box hidden"></div>
+          <div id="loggedMealsList" class="logged-meals"></div>
+        </div>
+
+        <!-- Daily Advice: What to Eat & What to Do -->
+        <div class="card advice-card">
+          <h3>🥣 What to Focus On Eating Today</h3>
+          <ul id="eatAdviceList" class="advice-list"></ul>
+        </div>
+
+        <div class="card advice-card">
+          <h3>🌷 What to Do Today</h3>
+          <ul id="doAdviceList" class="advice-list"></ul>
+        </div>
+      </section>
+
+      <!-- TAB 3: PROFILE & CUSTOMIZATION -->
+      <section id="tab-profile" class="tab-view" aria-label="Profile and Settings">
+        <div class="card">
+          <h2>💗 Mama Profile & Cultural Settings</h2>
+          <p class="muted-text small-copy">
+            Your location and lifestyle settings shape your daily advice, food checks, and Cultural Guide.
+          </p>
+
+          <form id="profileForm" class="profile-form">
+            <label>
+              Name / Nickname
+              <input id="profName" type="text" value="Mama" />
+            </label>
+
+            <div class="two-col">
+              <label>
+                Pregnancy Week
+                <input id="profWeek" type="number" min="1" max="42" value="20" />
+              </label>
+              <label>
+                Origin / Location
+                <input id="profLocation" type="text" value="Kuching, Malaysia" />
+              </label>
+            </div>
+
+            <div class="two-col">
+              <label>
+                Height (cm)
+                <input id="profHeight" type="number" min="100" max="220" value="158" />
+              </label>
+              <label>
+                Weight (kg)
+                <input id="profWeight" type="number" min="35" max="200" value="55" />
+              </label>
+            </div>
+
+            <label>
+              Lifestyle & Cultural Mode
+              <select id="profLifestyle">
+                <option value="Asian Lifestyle" selected>Asian Lifestyle (Pantang Larang & Local Foods)</option>
+                <option value="Western Lifestyle">Western Lifestyle (Evidence-Based & Western Staples)</option>
+                <option value="Blended Roots">Blended Roots (Mix of Asian & Western)</option>
+              </select>
+            </label>
+
+            <label>
+              Allergies & Foods to Flag (comma-separated)
+              <input id="profAllergies" type="text" placeholder="e.g., shellfish, peanuts, dairy" />
+            </label>
+
+            <button type="submit" class="btn-primary full-width">💖 Save Profile Settings</button>
+            <p id="saveStatusMsg" class="save-msg hidden">Profile saved! Tracker & Cultural Guide updated.</p>
+          </form>
+        </div>
+
+        <!-- Future Roadmap Card: Bump & Memory Album -->
+        <div class="card album-teaser-card">
+          <div class="card-header-row">
+            <h3>📸 Bump & Memory Album</h3>
+            <span class="badge-soft">Coming Soon</span>
+          </div>
+          <p class="muted-text small-copy">
+            A sweet keepsake gallery where mamas can capture weekly bump snapshots, body/face reflections, and milestones.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom 3-Tab Navigation -->
+    <nav class="bottom-nav" aria-label="Primary Navigation">
+      <button class="nav-btn" data-target="tab-discover" type="button">
+        <span class="nav-icon" aria-hidden="true">🌍</span>
+        <span>Discover</span>
+      </button>
+      <button class="nav-btn active" data-target="tab-tracker" type="button">
+        <span class="nav-icon" aria-hidden="true">💗</span>
+        <span>Tracker</span>
+      </button>
+      <button class="nav-btn" data-target="tab-profile" type="button">
+        <span class="nav-icon" aria-hidden="true">⚙️</span>
+        <span>Profile</span>
+      </button>
+    </nav>
+
+    <!-- Hidden Slide-Up Modal: Cultural Guide & Pantang Larang -->
+    <div id="culturalGuideModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle">
+      <div class="modal-sheet">
+        <div class="modal-handle"></div>
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">HIDDEN CULTURAL COMPANION</p>
+            <h2 id="guideModalTitle">Cultural Guide & Pantang Larang</h2>
+          </div>
+          <button id="closeGuideBtn" class="close-btn" type="button" aria-label="Close guide">✕</button>
+        </div>
+        <p id="guideSubtitle" class="muted-text small-copy"></p>
+        <div id="guideContent" class="guide-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

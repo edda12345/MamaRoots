@@ -18,7 +18,7 @@ A mobile-first pregnancy companion designed for the **Women's Health & Wellness*
 
 ## Project Links
 - **GitHub Repository:** https://github.com/edda12345/MamaRoots
-- **Demo Video (Google Drive):** https://drive.google.com/file/d/1OLSZOcyh7TD3H2VYZRHB5zWwwJ3IW/view?usp=sharing
+- **Demo Video (Google Drive):** https://drive.google.com/file/d/1OL_SzOcyh7TD3H2_VYZRHB5zWwwJ_3IW/view?usp=sharing
 
 ## Disclaimer
 Current nutrient estimates and cultural safety notes are provided for prototype demonstration and educational context, and do not replace medical advice from a qualified healthcare provider.
